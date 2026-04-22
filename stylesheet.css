@@ -131,7 +131,6 @@ span.highlight {
 }
 
 
-
 body {
   margin: 0;
   padding: 0;
@@ -148,7 +147,12 @@ body::before {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  opacity: 0.16;   /* 可改成 0.10 ~ 0.22 */
+  opacity: 0.16;
   z-index: -1;
   pointer-events: none;
+}
+
+.main-content {
+  position: relative;
+  z-index: 1;
 }
