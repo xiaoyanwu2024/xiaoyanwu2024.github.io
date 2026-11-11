@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xiaoyan Wu | Computational psychology of humans and AI</title>
+<meta name="author" content="Xiaoyan Wu">
+<meta name="description" content="Xiaoyan Wu is a postdoctoral fellow at the Psychiatric University Hospital Zurich and the Neuroscience Center Zurich (UZH and ETH). She studies how humans and artificial systems construct models of the world, how these models shape cognition and behavior, and how they become disrupted in psychiatric disorders.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Xiaoyan Wu | Computational psychology of humans and AI">
+<meta property="og:description" content="How humans and artificial systems construct models of the world, and how these models differ across systems or become disrupted in psychiatric disorders.">
+<meta property="og:url" content="https://xiaoyanwu2024.github.io/">
+<meta property="og:image" content="https://xiaoyanwu2024.github.io/images/Zhengmian.jpg">
+<link rel="canonical" href="https://xiaoyanwu2024.github.io/">
+<link rel="icon" type="image/png" href="images/web/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --text:#222; --muted:#666; --line:#e4e4e4; --bg:#fafafa; --card:#fff;
+  --link:#1772d0; --link-hover:#f09228; --accent:#cb181d;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:64px}
+body{margin:0; background:#f7f7f7; color:var(--text); position:relative; z-index:0;
+  font-family:'Lato',Verdana,Helvetica,sans-serif; font-size:16px; line-height:1.55;
+  -webkit-text-size-adjust:100%}
+a{color:var(--link); text-decoration:none}
+a:hover,a:focus{color:var(--link-hover)}
+img{max-width:100%; height:auto}
+.wrap{max-width:920px; margin:0 auto; padding:0 20px}
+
+/* top navigation */
+.nav{position:sticky; top:0; z-index:20; background:rgba(255,255,255,.92);
+  backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex; align-items:center; gap:18px; min-height:50px}
+.nav .brand{font-weight:700; color:var(--text); white-space:nowrap}
+.nav ul{list-style:none; margin:0 0 0 auto; padding:0; display:flex; gap:18px;
+  overflow-x:auto; white-space:nowrap; scrollbar-width:none}
+.nav ul::-webkit-scrollbar{display:none}
+.nav li a{font-size:15px; color:#444; padding:14px 0; display:block}
+.nav li a:hover{color:var(--link-hover)}
+
+/* hero */
+.hero{position:relative}
+/* fixed background, as on the original site: the page scrolls over it */
+body::before{content:""; position:fixed; inset:0; background:url("images/web/bg.webp") center center/cover no-repeat;
+  opacity:.5; z-index:-1; pointer-events:none}
+.hero-main{position:relative; display:grid; grid-template-columns:1fr 250px; gap:36px;
+  align-items:stretch; padding-top:30px; padding-bottom:0}
+.hero-main > div:first-child > :last-child{margin-bottom:0}
+.hero h1{font-size:30px; line-height:1.2; margin:0 0 4px; font-weight:700}
+.hero h1 .zh{font-weight:400; margin-left:12px; white-space:nowrap}
+.hero p.role{color:var(--muted); margin:0 0 14px; font-size:15px}
+.hero .lead{margin:0 0 12px}
+.hero p{margin:0 0 12px; font-size:16px; line-height:1.55}
+.hero p a{color:inherit}
+.hero p a:hover,.hero p a:focus{color:var(--link-hover); text-decoration:underline}
+/* the photo fills its column, so its top and bottom line up with the text block beside it */
+.hero .photo-col{position:relative; min-height:250px; margin:6px 0 5px}
+.hero .photo{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 22%;
+  border-radius:10px; display:block; box-shadow:0 2px 14px rgba(0,0,0,.12)}
+.links{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; margin-bottom:14px}
+.links a{border:1px solid #cfd8e3; background:#fff; border-radius:999px; padding:5px 14px; font-size:14.5px}
+.links a:hover{border-color:var(--link-hover)}
+.links a.primary{background:var(--link); border-color:var(--link); color:#fff}
+.links a.primary:hover{background:var(--link-hover); border-color:var(--link-hover); color:#fff}
+.logos{position:relative; display:flex; flex-wrap:wrap; align-items:center; gap:12px 36px; padding-top:2px; padding-bottom:22px}
+.logos img{height:40px; width:auto}
+.logos img.tall{height:52px}
+
+/* sections */
+section{padding:30px 0 4px}
+h2{font-size:24px; margin:0 0 16px; padding-bottom:8px; border-bottom:1px solid var(--line); font-weight:700}
+h3{font-size:17px; margin:26px 0 12px; color:#444; font-weight:700; text-transform:uppercase; letter-spacing:.04em}
+.note{color:var(--muted); font-size:14px}
+
+/* research themes */
+.themes{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+.theme{background:transparent; border:1px solid #d5d5d5; border-radius:10px; padding:18px 18px 14px}
+.theme .k{font-size:13px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; margin-bottom:6px}
+.theme h4{margin:0 0 8px; font-size:17.5px; line-height:1.3}
+.theme p{margin:0 0 8px; font-size:15px; color:var(--text)}
+.theme .go{font-size:14.5px}
+.theme{border-top:3px solid #b5b5b5}
+.theme .k{color:var(--text)}
+
+/* news */
+.news{list-style:none; margin:0; padding:0}
+.news li{display:grid; grid-template-columns:74px 1fr; gap:10px; padding:6px 0; border-bottom:1px dashed #ececec}
+.news time{color:var(--accent); font-weight:700; font-variant-numeric:tabular-nums}
+details.more{margin-top:8px}
+details.more summary{cursor:pointer; color:var(--link); padding:8px 0; font-size:15px; list-style:none}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"▸ "}
+details.more[open] summary::before{content:"▾ "}
+
+/* publications */
+.pub{display:grid; grid-template-columns:320px 1fr; gap:24px; align-items:start; padding:18px 0; border-bottom:1px solid #eee}
+.pub:last-child{border-bottom:0}
+.pub .t{font-weight:700; font-size:17px; line-height:1.35; display:block; margin-bottom:4px}
+.pub .au{font-size:15px; color:#333}
+.pub .au strong{color:#000}
+.pub .ve{font-size:15px; margin-top:2px}
+.pub .ve em{font-weight:700}
+.pub .sum{font-size:15px; color:#444; margin:8px 0 0}
+.pub .tag{display:inline-block; font-size:12.5px; border:1px solid #d9d9d9; border-radius:4px; padding:0 6px; margin-left:6px; color:#555; white-space:nowrap}
+.thumb{position:relative; background:transparent; overflow:hidden}
+.thumb img{display:block; width:100%}  /* the figures are saved with a transparent background */
+.thumb.anim{aspect-ratio:3/2; cursor:pointer}
+.thumb.anim .fig{position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transition:opacity .6s}
+.thumb.anim .schem{position:absolute; inset:0; width:100%; height:100%; opacity:0; transition:opacity .4s; font-family:inherit}
+.thumb.anim.run .schem{opacity:1}
+.thumb.anim.run .fig{opacity:0}
+.thumb .replay{position:absolute; right:6px; bottom:6px; font:inherit; font-size:12px; color:#333; background:rgba(255,255,255,.9);
+  border:1px solid #ccc; border-radius:999px; padding:2px 10px; cursor:pointer; transition:opacity .3s}
+@media (hover:hover){.thumb .replay{opacity:0}.thumb:hover .replay,.thumb:focus-visible .replay,.thumb.stopped .replay{opacity:1}}
+.also{font-size:15px; color:#333; margin:6px 0 0; padding-left:20px}
+.also li{margin-bottom:6px}
+
+/* schematic animations (only run while the thumb has .run) */
+.schem text{font-family:'Lato',Verdana,Helvetica,sans-serif}
+.s-title{font-size:12px; fill:#333; font-style:italic}
+.s-h{font-size:12px; font-weight:700}
+.s-sm{font-size:9.5px; fill:#777}
+.s-cap{font-size:12px; font-weight:700; fill:#222}
+.s-axis{fill:none; stroke:#999; stroke-width:1}
+.s-line{fill:none; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round}
+.run .a-fade{animation:aFade .5s ease both; animation-delay:var(--d,0s)}
+.run .a-pop{animation:aPop .45s cubic-bezier(.3,1.5,.5,1) both; animation-delay:var(--d,0s); transform-box:fill-box; transform-origin:center}
+.run .a-draw{stroke-dasharray:1; animation:aDraw var(--t,1s) ease both; animation-delay:var(--d,0s)}
+.run .a-move{animation:aMove 1.1s ease both; animation-delay:var(--d,0s)}
+.run .a-dim{animation:aDim .9s ease both; animation-delay:var(--d,0s)}
+.run .a-step{animation:aStep var(--t,2s) ease both; animation-delay:var(--d,0s)}
+.run .a-fall{animation:aFall .75s ease-in both; animation-delay:var(--d,0s)}
+.run .a-grow{animation:aGrow .7s ease both; animation-delay:var(--d,0s); transform-box:fill-box; transform-origin:bottom}
+.run .a-rot{animation:aRot 1s ease-in-out both; animation-delay:var(--d,0s); transform-box:view-box; transform-origin:var(--o)}
+@keyframes aGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes aRot{from{transform:rotate(0deg)}to{transform:rotate(var(--r))}}
+@keyframes aFade{from{opacity:0}to{opacity:1}}
+@keyframes aPop{from{opacity:0; transform:scale(.2)}to{opacity:1; transform:scale(1)}}
+@keyframes aDraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes aMove{from{transform:translate(0,0)}to{transform:translate(var(--tx,0),var(--ty,0))}}
+@keyframes aDim{from{opacity:1}to{opacity:.12}}
+@keyframes aStep{0%{opacity:0}12%{opacity:1}86%{opacity:1}100%{opacity:0}}
+@keyframes aFall{0%{opacity:0; transform:translate(0,0)}18%{opacity:1}80%{opacity:1}100%{opacity:0; transform:translate(var(--tx,0),var(--ty,60px))}}
+
+/* simple lists */
+.rows{list-style:none; margin:0; padding:0}
+.rows li{display:grid; grid-template-columns:104px 1fr; gap:10px; padding:7px 0; border-bottom:1px dashed #ececec}
+.rows li .y{color:var(--muted); font-variant-numeric:tabular-nums}
+.rows li .w{color:var(--muted); font-size:15px}
+.two{display:grid; grid-template-columns:1fr 1fr; gap:34px}
+
+footer{margin-top:40px; border-top:1px solid var(--line); padding:18px 0 34px; color:var(--muted); font-size:14px}
+
+@media (max-width:760px){
+  body{font-size:16px}
+  .nav .brand{display:none}
+  .nav ul{margin-left:0; gap:16px}
+  .hero-main{grid-template-columns:1fr; gap:18px; padding-top:22px}
+  .hero .photo-col{order:-1; width:190px; min-height:0; aspect-ratio:560/687; margin:0 auto}
+  .hero h1{font-size:27px; text-align:center}
+  .hero .role{text-align:center}
+  .links{justify-content:center}
+  .logos{justify-content:center; gap:10px 22px}
+  .logos img{height:30px}.logos img.tall{height:40px}
+  .themes{grid-template-columns:1fr}
+  .pub{grid-template-columns:1fr; gap:12px}
+  .thumb:not(.anim) img{max-height:230px; object-fit:contain}
+  .nav ul{gap:18px}
+  .two{grid-template-columns:1fr; gap:0}
+  .rows li{grid-template-columns:86px 1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top">Xiaoyan Wu</a>
+    <ul>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="data/xiaoyan_cv.pdf" target="_blank" rel="noopener">CV</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-main">
+    <div>
+      <h1>Xiaoyan Wu<span class="zh" lang="zh">吴小燕</span></h1>
+      <p class="role">Postdoctoral Fellow, <a href="https://www.puk.zh.ch/en/research" target="_blank" rel="noopener">Psychiatric University Hospital Zurich</a> and <a href="https://www.neuroscience.uzh.ch/" target="_blank" rel="noopener">Neuroscience Center Zurich</a> (UZH &amp; ETH Zurich)</p>
+      <p class="lead">I study how humans and artificial systems construct models of the world, how these models shape cognition and behavior, and how they differ across systems or become disrupted in psychiatric disorders.</p>
+      <p>My research combines behavioral experiments, computational modeling, neuroimaging, and analyses of large language models to investigate human cognition and artificial intelligence. I am currently a postdoctoral fellow in the <a href="https://homanlab.github.io/" target="_blank" rel="noopener">Homan Lab</a>. I received my PhD in Cognitive Neuroscience from the <a href="https://imibr.bnu.edu.cn/English/index.htm" target="_blank" rel="noopener">IDG/McGovern Institute for Brain Research</a> at Beijing Normal University, with research experience at the Zurich Center for Neuroeconomics during my PhD.</p>
+    </div>
+    <div class="photo-col">
+      <img class="photo" src="images/web/photo.webp" alt="Portrait of Xiaoyan Wu" width="560" height="687">
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="links">
+      <a class="primary" href="data/xiaoyan_cv.pdf" target="_blank" rel="noopener">CV</a>
+      <a href="https://scholar.google.com/citations?user=Wx9mgmQAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://github.com/xiaoyanwu2024" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/xiaoyanwu0906/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="mail" href="#" data-u="xiaoyan.psych" data-d="gmail.com" title="Click to write an email">xiaoyan.psych [at] gmail.com</a>
+    </div>
+  </div>
+  <div class="wrap logos" aria-label="Affiliations">
+    <img src="images/web/uzh.webp" alt="University of Zurich">
+    <img class="tall" src="images/web/puk.webp" alt="Psychiatric University Hospital Zurich">
+    <img src="images/web/eth.webp" alt="ETH Zurich">
+    <img src="images/web/znz.webp" alt="Neuroscience Center Zurich">
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="research">
+  <h2>Research</h2>
+  <div class="themes">
+    <div class="theme t1">
+      <div class="k">Humans and AI</div>
+      <h4>How language models judge people's motives</h4>
+      <p>People now ask chatbots why someone acted as they did. I compare large language models with human data and read their internal states with probing and steering. Models turn out to see less malice and more virtue than people do.</p>
+      <a class="go" href="#pub-ai">Papers →</a>
+    </div>
+    <div class="theme t2">
+      <div class="k">Computational psychiatry</div>
+      <h4>Cognitive maps and disorganized thought</h4>
+      <p>How does the brain build internal maps of knowledge, and what changes in psychosis? I study how relational knowledge is built from images and from language, and how it shows up in natural speech.</p>
+      <a class="go" href="#pub-maps">Papers →</a>
+    </div>
+    <div class="theme t3">
+      <div class="k">Social decision-making</div>
+      <h4>Human motives for cooperation and altruism</h4>
+      <p>Why do people cooperate, punish and help? I use computational models and neuroimaging to separate the motives behind altruism, trust and cooperation, from childhood to adulthood.</p>
+      <a class="go" href="#pub-social">Papers →</a>
+    </div>
+  </div>
+</section>
+
+<section id="news">
+  <h2>News</h2>
+  <ul class="news">
+    <li><time>2026.11</time><span>New preprint with Fan Shi: <a href="https://arxiv.org/abs/2611.01332" target="_blank" rel="noopener">Large language models underrepresent malice and overreport virtue</a>.</span></li>
+    <li><time>2026.10</time><span>I presented our new findings on language and schizophrenia from the <a href="https://homanlab.github.io/" target="_blank" rel="noopener">Homan Lab</a> at the <a href="https://www.ecnp.eu/meetings/" target="_blank" rel="noopener">39th ECNP Congress</a> in Munich.</span></li>
+    <li><time>2026.09</time><span>I was honored to receive a grant from <a href="https://www.anthropic.com/" target="_blank" rel="noopener">Anthropic</a> for my research on AI for mental health.</span></li>
+    <li><time>2026.07</time><span>I joined <em>eLife</em> as an Early-Career Reviewer.</span></li>
+    <li><time>2026.07</time><span>I was honored to be invited by Professor Jean-Claude Dreher and presented my work at the <a href="https://dreherteam.wixsite.com/neuroeconomics/jcd" target="_blank" rel="noopener">Neuroeconomics Laboratory</a>, CNRS Lyon.</span></li>
+  </ul>
+  <details class="more">
+    <summary>Earlier news</summary>
+    <ul class="news">
+      <li><time>2026.07</time><span>I am looking for Research Assistants to join my team at the University of Zurich. If you are interested in pursuing a PhD in <em>Computational Psychiatry</em>, please contact me. <a href="data/ResearchAssistantOpportunity.pdf" target="_blank" rel="noopener">More details</a>.</span></li>
+      <li><time>2026.07</time><span>I am recruiting motivated Master's students for a thesis project on <em>language and computational psychiatry</em> at the Homan Lab, University of Zurich and Psychiatric University Hospital Zurich. <a href="data/MasterThesis.pdf" target="_blank" rel="noopener">More details</a>.</span></li>
+      <li><time>2026.06</time><span>I was greatly honored to be invited by Prof. Raymond Dolan and presented my recent work, <em>"From Perception to Structure: Cognitive Disorganization Is Linked to Weaker Relational Knowledge Construction"</em>, at University College London.</span></li>
+      <li><time>2026.06</time><span>I was honored to receive <a href="https://www.research.uzh.ch/dam/jcr:e8b68be5-92f3-4ee0-aa65-3056a38a2825/Beitragsliste_Postdoc_2026.pdf" target="_blank" rel="noopener"><strong>the UZH Postdoc Grant</strong></a> to support my research at the University of Zurich.</span></li>
+      <li><time>2026.04</time><span>My study on adolescent cooperation was featured in <a href="https://elifesciences.org/for-the-press/15b3433b/why-teens-are-more-self-serving-than-adults-in-social-situations" target="_blank" rel="noopener"><strong>eLife Press</strong></a>.</span></li>
+      <li><time>2026.03</time><span>I attended <a href="https://schizophreniaresearchsociety.org/" target="_blank" rel="noopener">SIRS 2026</a> in Florence.</span></li>
+      <li><time>2026.02</time><span>I was honored to give an invited talk at Virginia Tech, hosted by Prof. Seongmin Park: <em>"Disorganization impairs cognitive maps built from visual inputs"</em>.</span></li>
+      <li><time>2026.01</time><span>I attended <a href="https://www.unige.ch/ABIM/" target="_blank" rel="noopener">ABIM 2026</a> in Champéry and received the <a href="data/BestPoster.png" target="_blank" rel="noopener">Best Poster Presentation Award</a>. Here is my <a href="data/ABIM_Poster_CogmapSSD.pdf" target="_blank" rel="noopener">poster</a>.</span></li>
+      <li><time>2025.12</time><span>I gave an invited talk at the University of Zurich, hosted by Prof. Todd Hare: <em>"Schizophrenia spectrum disorder and cognitive maps: new findings and future directions"</em>.</span></li>
+      <li><time>2025.12</time><span>The Christmas markets in Zurich began, and I invited friends and colleagues for a Glühwein after work.</span></li>
+      <li><time>2025.11</time><span>I presented my recent work, "Disorganization impairs cognitive maps built from visual inputs", at the 8th Burghölzli Psychiatry Meeting, Zurich.</span></li>
+      <li><time>2025.06</time><span>I presented my recent work from the <a href="https://homanlab.github.io/about/" target="_blank" rel="noopener">Homan Lab</a> at Universitat Pompeu Fabra (UPF).</span></li>
+      <li><time>2025.01</time><span>I was greatly honored to receive the Outstanding PhD Dissertation Award from Beijing Normal University.</span></li>
+      <li><time>2024.12</time><span>My research was selected as a Cover Runner-up for Nature Computational Science. <a href="https://www.nature.com/articles/s43588-024-00758-6" target="_blank" rel="noopener">View the design</a>.</span></li>
+      <li><time>2024.12</time><span>I officially started my postdoc at the University of Zurich.</span></li>
+      <li><time>2024.11</time><span>I was honored to give an invited talk at South China Normal University, Guangzhou.</span></li>
+      <li><time>2024.10</time><span>I was honored to present at the 22nd Annual Society for Neuroeconomics Meeting in Cascais, Portugal.</span></li>
+      <li><time>2024.10</time><span>I successfully defended my PhD dissertation and earned my doctoral degree in Psychology.</span></li>
+      <li><time>2024.09</time><span><a href="https://faculty.ecnu.edu.cn/_s9/hj2/main.psp" target="_blank" rel="noopener">Prof. Jie Hu</a> wrote a <a href="https://www.nature.com/articles/s43588-024-00690-9" target="_blank" rel="noopener">News &amp; Views article</a> on our work on <a href="https://www.nature.com/articles/s43588-024-00685-6" target="_blank" rel="noopener">human altruism</a>. A big thanks!</span></li>
+      <li><time>2024.08</time><span>Our work on human altruism was accepted in Nature Computational Science.</span></li>
+      <li><time>2024.03</time><span>I was honored to give invited talks at Waseda University and the University of Tokyo on human altruism.</span></li>
+      <li><time>2024.03</time><span>I was honored to present my work on trust at the Society for Social Neuroscience annual meeting in Tsukuba.</span></li>
+      <li><time>2024.01</time><span>I was honored to give an invited talk at Stanford University on neurocomputational components of trust.</span></li>
+      <li><time>2024.01</time><span>My visit to Zurich ended, and I returned to Beijing Normal University.</span></li>
+      <li><time>2023.10</time><span>I was honored to present at the 21st Annual Society for Neuroeconomics Meeting in Vancouver.</span></li>
+      <li><time>2023.07</time><span>I was honored to attend the Neuroeconomics Summer School at the University of Pennsylvania.</span></li>
+      <li><time>2023.06</time><span>I completed MRI User Training with a Qualified Certificate at University Hospital Zurich.</span></li>
+      <li><time>2022.12</time><span>I was honored to give an invited talk at the University of Zurich on human altruism.</span></li>
+      <li><time>2022.09</time><span>I was honored to participate in the Computational Psychiatry Course Zurich 2022.</span></li>
+      <li><time>2022.08</time><span>I was honored to give an invited talk at Peking University on inequality aversion and third-party intervention.</span></li>
+      <li><time>2021.12</time><span>I started my journey in Zurich as a visiting guest at UZH.</span></li>
+    </ul>
+  </details>
+</section>
+
+<section id="publications">
+  <h2>Selected Publications</h2>
+  <p class="note"><sup>†</sup> Co-first authors. <sup>*</sup> Co-last authors. Full list on <a href="https://scholar.google.com/citations?user=Wx9mgmQAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>.</p>
+
+  <h3 id="pub-ai">AI and language models</h3>
+
+  <article class="pub">
+    <div class="thumb anim" data-dur="8200" tabindex="0" aria-label="Animated summary of the paper. Click to replay.">
+      <img class="fig" src="images/web/mv_fig.webp" alt="Figure 1 of the paper: the whistleblowing scenario and the motive ratings of humans and language models" loading="lazy">
+      <svg class="schem" viewBox="0 0 360 240" aria-hidden="true">
+        
+        <text x="180" y="24" text-anchor="middle" class="s-title a-fade" style="--d:.2s">“Why did he blow the whistle?”</text>
+        <!-- left panel: motive to help -->
+        <g class="a-fade" style="--d:.7s">
+          <text x="100" y="50" text-anchor="middle" class="s-h" fill="#1f5fa8">Motive: to help</text>
+          <path class="s-axis" d="M40 68V180H164"/>
+          <text x="40" y="64" text-anchor="middle" class="s-sm">rating</text>
+          <text x="102" y="194" text-anchor="middle" class="s-sm">stays silent → goes public</text>
+        </g>
+        <!-- right panel: motive to harm -->
+        <g class="a-fade" style="--d:.7s">
+          <text x="270" y="50" text-anchor="middle" class="s-h" fill="#b3261e">Motive: to harm</text>
+          <path class="s-axis" d="M210 68V180H334"/>
+          <text x="210" y="64" text-anchor="middle" class="s-sm">rating</text>
+          <text x="272" y="194" text-anchor="middle" class="s-sm">stays silent → goes public</text>
+        </g>
+        <!-- gaps -->
+        <polygon class="a-fade" style="--d:4.4s" fill="#1f5fa8" fill-opacity=".14" points="82,127.2 118,128.3 154,141.5 154,116.2 118,109.6 82,108.5"/>
+        <polygon class="a-fade" style="--d:4.4s" fill="#b3261e" fill-opacity=".13" points="216,159.1 252,156.9 288,149.2 324,120.4 324,141.7 288,163.5 252,167.9 216,173.4"/>
+        <!-- people -->
+        <polyline class="s-line a-draw" pathLength="1" stroke="#e0a030" style="--d:1.4s;--t:1.1s" points="46,131.6 82,127.2 118,128.3 154,141.5"/>
+        <polyline class="s-line a-draw" pathLength="1" stroke="#e0a030" style="--d:1.4s;--t:1.1s" points="216,159.1 252,156.9 288,149.2 324,120.4"/>
+        <text x="118" y="146" text-anchor="middle" class="s-h a-fade" style="--d:2.3s" fill="#b97f12">People</text>
+        <text x="250" y="144" text-anchor="middle" class="s-h a-fade" style="--d:2.3s" fill="#b97f12">People</text>
+        <!-- LLM -->
+        <polyline class="s-line a-draw" pathLength="1" stroke="#1f3a5f" style="--d:2.9s;--t:1.1s" points="46,150.3 82,108.5 118,109.6 154,116.2"/>
+        <polyline class="s-line a-draw" pathLength="1" stroke="#1f3a5f" style="--d:2.9s;--t:1.1s" points="216,173.4 252,167.9 288,163.5 324,141.7"/>
+        <text x="118" y="101" text-anchor="middle" class="s-h a-fade" style="--d:3.8s" fill="#1f3a5f">LLM</text>
+        <text x="304" y="176" text-anchor="middle" class="s-h a-fade" style="--d:3.8s" fill="#1f3a5f">LLM</text>
+        <text x="100" y="84" text-anchor="middle" class="s-h a-pop" style="--d:4.7s" fill="#1f5fa8">↑ more virtue</text>
+        <text x="262" y="92" text-anchor="middle" class="s-h a-pop" style="--d:4.7s" fill="#b3261e">↓ less malice</text>
+        <text x="180" y="222" text-anchor="middle" class="s-cap a-fade" style="--d:5.5s">LLMs read motives more charitably than people do</text>
+      </svg>
+      <button class="replay" type="button" tabindex="-1">❚❚ Pause</button>
+    </div>
+    <div>
+      <a class="t" href="https://arxiv.org/abs/2611.01332" target="_blank" rel="noopener">Large language models underrepresent malice and overreport virtue</a>
+      <div class="au"><strong>Xiaoyan Wu</strong>, <a href="https://fanshi14.github.io/me/" target="_blank" rel="noopener">Fan Shi</a></div>
+      <div class="ve"><em>arXiv</em> (2026) <a class="tag" href="https://arxiv.org/abs/2611.01332" target="_blank" rel="noopener">Preprint</a></div>
+      <p class="sum">Language models judge a whistleblower's motives more charitably than people do. Reading the model's internal states shows two separate sources: the signal for malevolent motives is weaker inside the model, and benevolent motives are amplified when the model reports its answer.</p>
+    </div>
+  </article>
+
+  <article class="pub">
+    <div class="thumb anim" data-dur="8600" tabindex="0" aria-label="Animated summary of the paper. Click to replay.">
+      <img class="fig" src="images/web/llm_moral.webp" alt="Study design: disclosure decision, attributed motives and character judgment" loading="lazy">
+      <svg class="schem" viewBox="0 0 360 240" aria-hidden="true"><text x="180" y="24" text-anchor="middle" class="s-cap a-step" style="--d:0.3s;--t:3.0s">A whistleblower goes public. Good or bad?</text><text x="180" y="24" text-anchor="middle" class="s-cap a-fade" style="--d:3.5s">But why did he do it?</text>
+<g class="a-fade" style="--d:.8s">
+  <text x="100" y="50" text-anchor="middle" class="s-h" fill="#b97f12">People</text>
+  <text x="260" y="50" text-anchor="middle" class="s-h" fill="#1f3a5f">LLM</text>
+</g>
+<path class="a-draw" pathLength="1" style="--d:1.3s;--t:.8s" d="M50 66H150" stroke="#e0a030" stroke-width="9" stroke-linecap="round" fill="none"/>
+<path class="a-draw" pathLength="1" style="--d:1.3s;--t:.8s" d="M210 66H310" stroke="#1f3a5f" stroke-width="9" stroke-linecap="round" fill="none"/>
+<text x="180" y="71" text-anchor="middle" class="s-h a-pop" style="--d:2.2s;font-size:16px" fill="#2e7d32">≈</text>
+<text x="180" y="90" text-anchor="middle" class="s-sm a-fade" style="--d:2.2s">same moral judgment</text>
+<g class="a-fade" style="--d:3.7s"><path class="s-axis" d="M48 186H160M208 186H320"/><rect x="62" y="198" width="8" height="8" rx="1.5" fill="#2b4c9b"/><text x="73" y="206" class="s-sm">duty</text><rect x="110" y="198" width="8" height="8" rx="1.5" fill="#3f8fc6"/><text x="121" y="206" class="s-sm">helping</text><rect x="174" y="198" width="8" height="8" rx="1.5" fill="#e57373"/><text x="185" y="206" class="s-sm">self-interest</text><rect x="262" y="198" width="8" height="8" rx="1.5" fill="#9c2b2b"/><text x="273" y="206" class="s-sm">harm</text>
+  <text x="104" y="112" text-anchor="middle" class="s-sm">motives they see</text><text x="264" y="112" text-anchor="middle" class="s-sm">motives it sees</text></g>
+<rect class="a-grow" style="--d:3.90s" x="55" y="147" width="18" height="39" rx="2" fill="#2b4c9b"/><rect class="a-grow" style="--d:4.02s" x="82" y="161" width="18" height="25" rx="2" fill="#3f8fc6"/><rect class="a-grow" style="--d:4.14s" x="109" y="150" width="18" height="36" rx="2" fill="#e57373"/><rect class="a-grow" style="--d:4.26s" x="136" y="148" width="18" height="38" rx="2" fill="#9c2b2b"/><rect class="a-grow" style="--d:4.70s" x="215" y="123" width="18" height="63" rx="2" fill="#2b4c9b"/><rect class="a-grow" style="--d:4.82s" x="242" y="133" width="18" height="53" rx="2" fill="#3f8fc6"/><rect class="a-grow" style="--d:4.94s" x="269" y="171" width="18" height="15" rx="2" fill="#e57373"/><rect class="a-grow" style="--d:5.06s" x="296" y="175" width="18" height="11" rx="2" fill="#9c2b2b"/>
+<text x="180" y="228" text-anchor="middle" class="s-cap a-fade" style="--d:5.9s">Same verdict, different reasons</text></svg>
+      <button class="replay" type="button" tabindex="-1">❚❚ Pause</button>
+    </div>
+    <div>
+      <a class="t" href="https://arxiv.org/abs/2609.07353" target="_blank" rel="noopener">Human-like moral judgments conceal divergent motive attributions in large language models</a>
+      <div class="au"><strong>Xiaoyan Wu</strong>, <a href="https://dreherteam.wixsite.com/neuroeconomics/jcd" target="_blank" rel="noopener">Jean-Claude Dreher</a></div>
+      <div class="ve"><em>arXiv</em> (2026) <a class="tag" href="https://arxiv.org/abs/2609.07353" target="_blank" rel="noopener">Preprint</a></div>
+      <p class="sum">Large language models reproduce human moral evaluations of whistleblowers while attributing systematically different motives to them, so agreement in average judgments can conceal a different attributional structure.</p>
+    </div>
+  </article>
+
+  <ul class="also">
+    <li><strong>Xiaoyan Wu</strong>. Behavioral fidelity without cultural fidelity: How large language models simulate cross-cultural prosocial behavior. <em>Under review</em>.</li>
+    <li>Hongyu Fu, …, <strong>Xiaoyan Wu</strong><sup>*</sup>, Chao Liu<sup>*</sup>. Reciprocity reward sustains human cooperation with diverse agents under framed social intent-induced expectation. <em>Under review</em>.</li>
+  </ul>
+
+  <h3 id="pub-maps">Cognitive maps and psychosis</h3>
+
+  <article class="pub">
+    <div class="thumb anim" data-dur="9000" tabindex="0" aria-label="Animated summary of the paper. Click to replay.">
+      <img class="fig" src="images/web/CogmapSDD.webp" alt="Paper figure: the two-dimensional conceptual map task and its relation to cognitive disorganization" loading="lazy">
+      <svg class="schem" viewBox="0 0 360 240" aria-hidden="true">
+        
+        <g class="a-fade" style="--d:.2s">
+          <text x="95" y="46" text-anchor="middle" class="s-h" fill="#1b8fb0">Learned from images</text>
+          <text x="265" y="46" text-anchor="middle" class="s-h" fill="#7b3fa0">Learned from words</text>
+          <rect x="20" y="58" width="150" height="122" rx="8" fill="#1b8fb0" fill-opacity=".06" stroke="#1b8fb0" stroke-opacity=".3"/>
+          <rect x="190" y="58" width="150" height="122" rx="8" fill="#7b3fa0" fill-opacity=".06" stroke="#7b3fa0" stroke-opacity=".3"/>
+        </g>
+        <!-- links, images map (dims later) -->
+        <g class="a-dim" style="--d:4.6s" stroke="#1b8fb0" stroke-width="1.6" fill="none">
+          <path class="a-draw" pathLength="1" style="--d:1.5s;--t:.5s" d="M50 81L95 76"/>
+          <path class="a-draw" pathLength="1" style="--d:1.6s;--t:.5s" d="M95 76L140 86"/>
+          <path class="a-draw" pathLength="1" style="--d:1.7s;--t:.5s" d="M50 81L60 126"/>
+          <path class="a-draw" pathLength="1" style="--d:1.8s;--t:.5s" d="M95 76L105 121"/>
+          <path class="a-draw" pathLength="1" style="--d:1.9s;--t:.5s" d="M140 86L145 136"/>
+          <path class="a-draw" pathLength="1" style="--d:2.0s;--t:.5s" d="M60 126L105 121"/>
+          <path class="a-draw" pathLength="1" style="--d:2.1s;--t:.5s" d="M105 121L145 136"/>
+          <path class="a-draw" pathLength="1" style="--d:2.2s;--t:.5s" d="M60 126L80 161"/>
+          <path class="a-draw" pathLength="1" style="--d:2.3s;--t:.5s" d="M105 121L80 161"/>
+        </g>
+        <!-- links, words map (stays) -->
+        <g stroke="#7b3fa0" stroke-width="1.6" fill="none">
+          <path class="a-draw" pathLength="1" style="--d:1.5s;--t:.5s" d="M220 81L265 76"/>
+          <path class="a-draw" pathLength="1" style="--d:1.6s;--t:.5s" d="M265 76L310 86"/>
+          <path class="a-draw" pathLength="1" style="--d:1.7s;--t:.5s" d="M220 81L230 126"/>
+          <path class="a-draw" pathLength="1" style="--d:1.8s;--t:.5s" d="M265 76L275 121"/>
+          <path class="a-draw" pathLength="1" style="--d:1.9s;--t:.5s" d="M310 86L315 136"/>
+          <path class="a-draw" pathLength="1" style="--d:2.0s;--t:.5s" d="M230 126L275 121"/>
+          <path class="a-draw" pathLength="1" style="--d:2.1s;--t:.5s" d="M275 121L315 136"/>
+          <path class="a-draw" pathLength="1" style="--d:2.2s;--t:.5s" d="M230 126L250 161"/>
+          <path class="a-draw" pathLength="1" style="--d:2.3s;--t:.5s" d="M275 121L250 161"/>
+        </g>
+        <!-- nodes, images map (drift later) -->
+        <g fill="#1b8fb0">
+          <g class="a-move" style="--d:4.6s;--tx:-14px;--ty:-9px"><circle class="a-pop" style="--d:.7s" cx="50" cy="81" r="6"/></g>
+          <g class="a-move" style="--d:4.6s;--tx:12px;--ty:13px"><circle class="a-pop" style="--d:.8s" cx="95" cy="76" r="6"/></g>
+          <g class="a-move" style="--d:4.6s;--tx:10px;--ty:-12px"><circle class="a-pop" style="--d:.9s" cx="140" cy="86" r="6"/></g>
+          <g class="a-move" style="--d:4.6s;--tx:-16px;--ty:14px"><circle class="a-pop" style="--d:1.0s" cx="60" cy="126" r="6"/></g>
+          <g class="a-move" style="--d:4.6s;--tx:15px;--ty:-11px"><circle class="a-pop" style="--d:1.1s" cx="105" cy="121" r="6"/></g>
+          <g class="a-move" style="--d:4.6s;--tx:8px;--ty:17px"><circle class="a-pop" style="--d:1.2s" cx="145" cy="136" r="6"/></g>
+          <g class="a-move" style="--d:4.6s;--tx:-18px;--ty:4px"><circle class="a-pop" style="--d:1.3s" cx="80" cy="161" r="6"/></g>
+        </g>
+        <!-- nodes, words map -->
+        <g fill="#7b3fa0">
+          <circle class="a-pop" style="--d:.7s" cx="220" cy="81" r="6"/>
+          <circle class="a-pop" style="--d:.8s" cx="265" cy="76" r="6"/>
+          <circle class="a-pop" style="--d:.9s" cx="310" cy="86" r="6"/>
+          <circle class="a-pop" style="--d:1.0s" cx="230" cy="126" r="6"/>
+          <circle class="a-pop" style="--d:1.1s" cx="275" cy="121" r="6"/>
+          <circle class="a-pop" style="--d:1.2s" cx="315" cy="136" r="6"/>
+          <circle class="a-pop" style="--d:1.3s" cx="250" cy="161" r="6"/>
+        </g>
+        <text x="95" y="196" text-anchor="middle" class="s-h a-pop" style="--d:5.6s" fill="#b3261e">map weakens</text>
+        <text x="265" y="196" text-anchor="middle" class="s-h a-pop" style="--d:5.6s" fill="#2e7d32">map holds</text>
+        <text x="180" y="24" text-anchor="middle" class="s-cap a-step" style="--d:.3s;--t:3.2s">People learn how concepts relate, like a map</text>
+        <text x="180" y="24" text-anchor="middle" class="s-cap a-fade" style="--d:3.8s">With more disorganized thinking…</text>
+        <text x="180" y="224" text-anchor="middle" class="s-cap a-fade" style="--d:6.2s">…only the map built from images suffers</text>
+      </svg>
+      <button class="replay" type="button" tabindex="-1">❚❚ Pause</button>
+    </div>
+    <div>
+      <a class="t" href="https://doi.org/10.64898/2025.12.22.695951" target="_blank" rel="noopener">Disorganization impairs cognitive maps built from visual inputs</a>
+      <div class="au"><strong>Xiaoyan Wu</strong>, Finn Rabe, Peizheng Wu, Victoria Edkins, Yves Pauli, <a href="https://www.aesthetics.mpg.de/en/the-institute/people/stephanie-theves.html" target="_blank" rel="noopener">Stephanie Theves</a>, <a href="https://www.icrea.cat/community/icreas/17692/wolfram-hinzen/" target="_blank" rel="noopener">Wolfram Hinzen</a>, <a href="https://www.rug.nl/about-ug/latest-news/press-information/scientists-in-focus/sommer-prof-iris?lang=en" target="_blank" rel="noopener">Iris E. Sommer</a>, <a href="https://homanlab.github.io/people/2019/10/14/philipp-homan-md-phd/" target="_blank" rel="noopener">Philipp Homan</a></div>
+      <div class="ve"><em>Schizophrenia Bulletin</em> (2026, in press) <a class="tag" href="https://doi.org/10.64898/2025.12.22.695951" target="_blank" rel="noopener">DOI</a></div>
+      <p class="sum">Schizophrenia-spectrum cognitive disorganization selectively disrupts the ability to construct and use internal relational maps from visual input, but not from language, supporting the shallow cognitive map hypothesis.</p>
+    </div>
+  </article>
+
+  <article class="pub">
+    <div class="thumb anim" data-dur="8400" tabindex="0" aria-label="Animated summary of the paper. Click to replay.">
+      <img class="fig" src="images/web/teaching.webp" alt="Speech recording design: self-reflecting versus teaching others" loading="lazy">
+      <svg class="schem" viewBox="0 0 360 240" aria-hidden="true"><text x="180" y="24" text-anchor="middle" class="s-cap a-step" style="--d:0.3s;--t:3.1s">Recalling for yourself: a simple line</text><text x="180" y="24" text-anchor="middle" class="s-cap a-fade" style="--d:3.8s">Teaching someone else…</text>
+<g class="a-fade" style="--d:.3s">
+  <circle cx="44" cy="104" r="15" fill="#8f8ca3"/><path d="M20 152q0-27 24-27t24 27z" fill="#8f8ca3"/>
+  <path d="M68 96q8 8 0 16M76 90q13 14 0 28M84 84q18 20 0 40" stroke="#8f8ca3" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <rect x="120" y="66" width="220" height="124" rx="8" fill="#8a7a3a" fill-opacity=".05" stroke="#8a7a3a" stroke-opacity=".3"/>
+</g>
+<g class="a-step" style="--d:.8s;--t:2.8s"><rect x="120" y="40" width="96" height="19" rx="9.5" fill="#f3ecd2"/><text x="168" y="53.5" text-anchor="middle" class="s-sm" style="fill:#5c5330">Self-reflecting</text><text x="226" y="54" class="s-h" fill="#8a7a3a">→ 1D</text></g>
+<g class="a-fade" style="--d:3.8s"><rect x="120" y="40" width="100" height="19" rx="9.5" fill="#f6cfd2"/><text x="170" y="53.5" text-anchor="middle" class="s-sm" style="fill:#7a2f3a">Teaching others</text><text x="230" y="54" class="s-h" fill="#b3261e">→ 2D</text></g>
+<path class="a-step" style="--d:1.0s;--t:2.7s" d="M150 126H320" stroke="#c9c4b8" stroke-width="2"/>
+<g class="a-fade" style="--d:3.9s" stroke="#e3ddd0" stroke-width="1"><path d="M175 72V184M230 72V184M285 72V184M126 105H334M126 147H334"/></g>
+<g class="a-fade" style="--d:3.9s"><text x="230" y="201" text-anchor="middle" class="s-sm">time of day →</text><text x="112" y="130" text-anchor="middle" class="s-sm" transform="rotate(-90 112 130)">age group →</text></g>
+<g class="a-move" style="--d:4.1s;--tx:20px;--ty:-30px"><circle class="a-pop" style="--d:1.00s" cx="150" cy="126" r="7" fill="#d98a2b"/></g><g class="a-move" style="--d:4.1s;--tx:116px;--ty:-35px"><circle class="a-pop" style="--d:1.12s" cx="184" cy="126" r="7" fill="#d98a2b"/></g><g class="a-move" style="--d:4.1s;--tx:12px;--ty:-5px"><circle class="a-pop" style="--d:1.24s" cx="218" cy="126" r="7" fill="#d98a2b"/></g><g class="a-move" style="--d:4.1s;--tx:-72px;--ty:35px"><circle class="a-pop" style="--d:1.36s" cx="252" cy="126" r="7" fill="#d98a2b"/></g><g class="a-move" style="--d:4.1s;--tx:-26px;--ty:25px"><circle class="a-pop" style="--d:1.48s" cx="286" cy="126" r="7" fill="#d98a2b"/></g><g class="a-move" style="--d:4.1s;--tx:-10px;--ty:45px"><circle class="a-pop" style="--d:1.60s" cx="320" cy="126" r="7" fill="#d98a2b"/></g>
+<text x="180" y="224" text-anchor="middle" class="s-cap a-fade" style="--d:5.6s">…brings the hidden 2D map into speech</text></svg>
+      <button class="replay" type="button" tabindex="-1">❚❚ Pause</button>
+    </div>
+    <div>
+      <a class="t" href="https://www.biorxiv.org/content/10.64898/2026.08.04.742691v1" target="_blank" rel="noopener">Teaching others reveals hidden structure in conceptual cognitive maps</a>
+      <div class="au"><strong>Xiaoyan Wu</strong>, Peizheng Wu, Wolfgang Omlor, <a href="https://www.icrea.cat/community/icreas/17692/wolfram-hinzen/" target="_blank" rel="noopener">Wolfram Hinzen</a>, <a href="https://www.rug.nl/about-ug/latest-news/press-information/scientists-in-focus/sommer-prof-iris?lang=en" target="_blank" rel="noopener">Iris E. Sommer</a>, <a href="https://homanlab.github.io/people/2019/10/14/philipp-homan-md-phd/" target="_blank" rel="noopener">Philipp Homan</a></div>
+      <div class="ve"><em>bioRxiv</em> (2026) <a class="tag" href="https://doi.org/10.64898/2026.08.04.742691" target="_blank" rel="noopener">DOI</a></div>
+      <p class="sum">Explaining knowledge to others externalizes spatially structured representations of conceptual memory in naturalistic speech. Cognitive disorganization selectively weakens this effect after image-based, but not language-based, learning.</p>
+    </div>
+  </article>
+
+  <h3 id="pub-social">Social decision-making</h3>
+
+  <article class="pub">
+    <div class="thumb anim" data-dur="8600" tabindex="0" aria-label="Animated summary of the paper. Click to replay.">
+      <img class="fig" src="images/web/MotiveCocktail.webp" alt="Paper figure: the motive cocktail model" loading="lazy">
+      <svg class="schem" viewBox="0 0 360 240" aria-hidden="true">
+        <defs><clipPath id="glassClip"><path d="M158 120H212L204 180H166Z"/></clipPath></defs>
+        
+        <!-- unfair split -->
+        <g class="a-fade" style="--d:.2s">
+          <text x="70" y="78" text-anchor="middle" class="s-h" fill="#444">Unfair split</text>
+          <path d="M70 150l-11 20h22z" fill="#bbb"/>
+          <path d="M26 159L114 141" stroke="#999" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="36" cy="128" r="8" fill="#888"/><path d="M24 155q0-17 12-17t12 17z" fill="#f2b632"/>
+          <circle cx="104" cy="112" r="8" fill="#888"/><path d="M92 139q0-17 12-17t12 17z" fill="#3fa9e0"/>
+          <text x="36" y="188" text-anchor="middle" class="s-sm">Violator</text>
+          <text x="104" y="188" text-anchor="middle" class="s-sm">Victim</text>
+        </g>
+        <!-- third party -->
+        <g class="a-fade" style="--d:.9s">
+          <circle cx="185" cy="50" r="8" fill="#555"/><path d="M173 77q0-17 12-17t12 17z" fill="#9aa3ad"/>
+          <text x="204" y="56" class="s-sm">You, a third party</text>
+          <path d="M170 66L118 112" stroke="#aaa" stroke-width="1.2" stroke-dasharray="3 3"/>
+        </g>
+        <!-- glass -->
+        <g class="a-fade" style="--d:1.9s">
+          <g clip-path="url(#glassClip)">
+            <rect class="a-fade" style="--d:2.80s" x="150" y="172" width="70" height="8.6" fill="#4c78a8"/>
+            <rect class="a-fade" style="--d:3.15s" x="150" y="164" width="70" height="8.6" fill="#f58518"/>
+            <rect class="a-fade" style="--d:3.50s" x="150" y="156" width="70" height="8.6" fill="#e45756"/>
+            <rect class="a-fade" style="--d:3.85s" x="150" y="148" width="70" height="8.6" fill="#72b7b2"/>
+            <rect class="a-fade" style="--d:4.20s" x="150" y="140" width="70" height="8.6" fill="#54a24b"/>
+            <rect class="a-fade" style="--d:4.55s" x="150" y="132" width="70" height="8.6" fill="#b279a2"/>
+            <rect class="a-fade" style="--d:4.90s" x="150" y="126" width="70" height="6.6" fill="#eeca3b"/>
+          </g>
+          <path d="M158 120H212L204 180H166Z" fill="none" stroke="#666" stroke-width="2" stroke-linejoin="round"/>
+        </g>
+        <!-- seven drops -->
+        <circle class="a-fall" style="--d:2.20s;--tx:10px;--ty:62px" cx="175" cy="90" r="4.5" fill="#4c78a8"/>
+        <circle class="a-fall" style="--d:2.55s;--tx:-8px;--ty:58px" cx="193" cy="90" r="4.5" fill="#f58518"/>
+        <circle class="a-fall" style="--d:2.90s;--tx:6px;--ty:52px" cx="179" cy="90" r="4.5" fill="#e45756"/>
+        <circle class="a-fall" style="--d:3.25s;--tx:-4px;--ty:46px" cx="189" cy="90" r="4.5" fill="#72b7b2"/>
+        <circle class="a-fall" style="--d:3.60s;--tx:8px;--ty:40px" cx="177" cy="90" r="4.5" fill="#54a24b"/>
+        <circle class="a-fall" style="--d:3.95s;--tx:-6px;--ty:34px" cx="191" cy="90" r="4.5" fill="#b279a2"/>
+        <circle class="a-fall" style="--d:4.30s;--tx:0px;--ty:28px" cx="185" cy="90" r="4.5" fill="#eeca3b"/>
+        <!-- outcomes -->
+        <g class="a-fade" style="--d:5.6s">
+          <path d="M216 140L252 122M216 158L252 174" stroke="#888" stroke-width="1.5" fill="none"/>
+          <path d="M252 122l-8 -1 4 7zM252 174l-8 1 4 -7z" fill="#888"/>
+        </g>
+        <g class="a-pop" style="--d:5.8s"><rect x="256" y="106" width="88" height="28" rx="14" fill="#fdecea" stroke="#d9534f"/><text x="300" y="124" text-anchor="middle" class="s-h" fill="#b3261e">Punish</text></g>
+        <g class="a-pop" style="--d:6.0s"><rect x="256" y="162" width="88" height="28" rx="14" fill="#e8f5e9" stroke="#4caf50"/><text x="300" y="180" text-anchor="middle" class="s-h" fill="#2e7d32">Help</text></g>
+        <text x="180" y="24" text-anchor="middle" class="s-cap a-step" style="--d:.3s;--t:2.1s">Someone is treated unfairly. You are watching.</text>
+        <text x="180" y="24" text-anchor="middle" class="s-cap a-step" style="--d:2.4s;--t:3.2s">Seven motives mix, in different amounts…</text>
+        <text x="180" y="24" text-anchor="middle" class="s-cap a-fade" style="--d:5.6s">…and the blend decides what you do</text>
+        <text x="180" y="224" text-anchor="middle" class="s-sm a-fade" style="--d:6.4s">Each person has their own recipe: the “motive cocktail”</text>
+      </svg>
+      <button class="replay" type="button" tabindex="-1">❚❚ Pause</button>
+    </div>
+    <div>
+      <a class="t" href="https://www.nature.com/articles/s43588-024-00685-6" target="_blank" rel="noopener">The motive cocktail in altruistic behaviors</a>
+      <div class="au"><strong>Xiaoyan Wu</strong><sup>†</sup>, <a href="https://www.psy.uni-hamburg.de/arbeitsbereiche/kognitive-neurowissenschaften-insb-lern-und-veraenderungsmechanismen/personen/ren-xiangjuan.html" target="_blank" rel="noopener">Xiangjuan Ren</a><sup>†</sup>, <a href="https://liuchaolab.bnu.edu.cn/mobile/en/?page_id=156" target="_blank" rel="noopener">Chao Liu</a>, <a href="https://mgv.pku.edu.cn/english/people/lbd/sopacs/220156.htm" target="_blank" rel="noopener">Hang Zhang</a></div>
+      <div class="ve"><em>Nature Computational Science</em> (2024) <a class="tag" href="https://www.nature.com/articles/s43588-024-00685-6" target="_blank" rel="noopener">Paper</a><a class="tag" href="https://www.nature.com/articles/s43588-024-00690-9" target="_blank" rel="noopener">News &amp; Views</a></div>
+      <p class="sum">Third-party punishment and helping are not driven by a single moral impulse. Behavioral experiments and computational modeling identify seven socioeconomic motives, the "motive cocktail", whose mix differs between people and contexts.</p>
+    </div>
+  </article>
+
+  <article class="pub">
+    <div class="thumb anim" data-dur="8200" tabindex="0" aria-label="Animated summary of the paper. Click to replay.">
+      <img class="fig" src="images/web/ChildrenAtruism.webp" alt="Motive cocktail model applied to children's third-party decisions" loading="lazy">
+      <svg class="schem" viewBox="0 0 360 240" aria-hidden="true"><defs><clipPath id="kg0"><path d="M56 104H104L97 172H63Z"/></clipPath><clipPath id="kg1"><path d="M156 104H204L197 172H163Z"/></clipPath><clipPath id="kg2"><path d="M256 104H304L297 172H263Z"/></clipPath></defs><text x="180" y="24" text-anchor="middle" class="s-cap a-step" style="--d:0.3s;--t:2.7s">Children react to unfairness too</text><text x="180" y="24" text-anchor="middle" class="s-cap a-step" style="--d:3.1s;--t:2.3s">Several motives drive them…</text><g class="a-fade" style="--d:0.30s"><circle cx="80" cy="52" r="7.5" fill="#777"/><path d="M69 78q0-15 11-15t11 15z" fill="#5aa9d6"/></g><g class="a-fade" style="--d:1.2s"><g clip-path="url(#kg0)"><rect class="a-fade" style="--d:2.00s" x="54" y="150" width="52" height="22.6" fill="#4c78a8"/><rect class="a-fade" style="--d:2.38s" x="54" y="142" width="52" height="8.6" fill="#f58518"/><rect class="a-fade" style="--d:2.76s" x="54" y="130" width="52" height="12.6" fill="#e45756"/><rect class="a-fade" style="--d:3.14s" x="54" y="124" width="52" height="6.6" fill="#72b7b2"/><rect class="a-fade" style="--d:3.52s" x="54" y="114" width="52" height="10.6" fill="#b279a2"/></g><path d="M56 104H104L97 172H63Z" fill="none" stroke="#666" stroke-width="2" stroke-linejoin="round"/></g><circle class="a-fall" style="--d:1.60s;--tx:5px;--ty:58px" cx="75" cy="90" r="4" fill="#4c78a8"/><circle class="a-fall" style="--d:1.98s;--tx:-4px;--ty:49px" cx="84" cy="90" r="4" fill="#f58518"/><circle class="a-fall" style="--d:2.36s;--tx:3px;--ty:40px" cx="77" cy="90" r="4" fill="#e45756"/><circle class="a-fall" style="--d:2.74s;--tx:-3px;--ty:31px" cx="83" cy="90" r="4" fill="#72b7b2"/><circle class="a-fall" style="--d:3.12s;--tx:0px;--ty:22px" cx="80" cy="90" r="4" fill="#b279a2"/><g class="a-fade" style="--d:0.45s"><circle cx="180" cy="52" r="7.5" fill="#777"/><path d="M169 78q0-15 11-15t11 15z" fill="#f2a65a"/></g><g class="a-fade" style="--d:1.2s"><g clip-path="url(#kg1)"><rect class="a-fade" style="--d:2.12s" x="154" y="164" width="52" height="8.6" fill="#4c78a8"/><rect class="a-fade" style="--d:2.50s" x="154" y="144" width="52" height="20.6" fill="#f58518"/><rect class="a-fade" style="--d:2.88s" x="154" y="138" width="52" height="6.6" fill="#e45756"/><rect class="a-fade" style="--d:3.26s" x="154" y="122" width="52" height="16.6" fill="#72b7b2"/><rect class="a-fade" style="--d:3.64s" x="154" y="114" width="52" height="8.6" fill="#b279a2"/></g><path d="M156 104H204L197 172H163Z" fill="none" stroke="#666" stroke-width="2" stroke-linejoin="round"/></g><circle class="a-fall" style="--d:1.72s;--tx:5px;--ty:58px" cx="175" cy="90" r="4" fill="#4c78a8"/><circle class="a-fall" style="--d:2.10s;--tx:-4px;--ty:49px" cx="184" cy="90" r="4" fill="#f58518"/><circle class="a-fall" style="--d:2.48s;--tx:3px;--ty:40px" cx="177" cy="90" r="4" fill="#e45756"/><circle class="a-fall" style="--d:2.86s;--tx:-3px;--ty:31px" cx="183" cy="90" r="4" fill="#72b7b2"/><circle class="a-fall" style="--d:3.24s;--tx:0px;--ty:22px" cx="180" cy="90" r="4" fill="#b279a2"/><g class="a-fade" style="--d:0.60s"><circle cx="280" cy="52" r="7.5" fill="#777"/><path d="M269 78q0-15 11-15t11 15z" fill="#9b8fd9"/></g><g class="a-fade" style="--d:1.2s"><g clip-path="url(#kg2)"><rect class="a-fade" style="--d:2.24s" x="254" y="160" width="52" height="12.6" fill="#4c78a8"/><rect class="a-fade" style="--d:2.62s" x="254" y="151" width="52" height="9.6" fill="#f58518"/><rect class="a-fade" style="--d:3.00s" x="254" y="130" width="52" height="21.6" fill="#e45756"/><rect class="a-fade" style="--d:3.38s" x="254" y="122" width="52" height="8.6" fill="#72b7b2"/><rect class="a-fade" style="--d:3.76s" x="254" y="114" width="52" height="8.6" fill="#b279a2"/></g><path d="M256 104H304L297 172H263Z" fill="none" stroke="#666" stroke-width="2" stroke-linejoin="round"/></g><circle class="a-fall" style="--d:1.84s;--tx:5px;--ty:58px" cx="275" cy="90" r="4" fill="#4c78a8"/><circle class="a-fall" style="--d:2.22s;--tx:-4px;--ty:49px" cx="284" cy="90" r="4" fill="#f58518"/><circle class="a-fall" style="--d:2.60s;--tx:3px;--ty:40px" cx="277" cy="90" r="4" fill="#e45756"/><circle class="a-fall" style="--d:2.98s;--tx:-3px;--ty:31px" cx="283" cy="90" r="4" fill="#72b7b2"/><circle class="a-fall" style="--d:3.36s;--tx:0px;--ty:22px" cx="280" cy="90" r="4" fill="#b279a2"/><text x="180" y="204" text-anchor="middle" class="s-cap a-fade" style="--d:5.5s">…mixed differently in every child</text><text x="180" y="224" text-anchor="middle" class="s-sm a-fade" style="--d:6.1s">The motive cocktail, from childhood on</text></svg>
+      <button class="replay" type="button" tabindex="-1">❚❚ Pause</button>
+    </div>
+    <div>
+      <a class="t" href="https://doi.org/10.64898/2026.03.18.712612" target="_blank" rel="noopener">The motive cocktail in children's altruistic behaviors</a>
+      <div class="au"><strong>Xiaoyan Wu</strong>, <a href="https://www.psy.uni-hamburg.de/arbeitsbereiche/kognitive-neurowissenschaften-insb-lern-und-veraenderungsmechanismen/personen/ren-xiangjuan.html" target="_blank" rel="noopener">Xiangjuan Ren</a>, <a href="https://dreherteam.wixsite.com/neuroeconomics" target="_blank" rel="noopener">Jean-Claude Dreher</a>, <a href="https://liuchaolab.bnu.edu.cn/mobile/en/?page_id=156" target="_blank" rel="noopener">Chao Liu</a></div>
+      <div class="ve"><em>bioRxiv</em> (2026) <a class="tag" href="https://doi.org/10.64898/2026.03.18.712612" target="_blank" rel="noopener">DOI</a></div>
+      <p class="sum">Children's third-party altruism is also a cocktail of dissociable social motives, which shape punishment and helping in response to inequality across contexts, gender and individuals.</p>
+    </div>
+  </article>
+
+  <article class="pub">
+    <div class="thumb anim" data-dur="8400" tabindex="0" aria-label="Animated summary of the paper. Click to replay.">
+      <img class="fig" src="images/web/Selfishness.webp" alt="Adolescents and adults in a repeated social dilemma" loading="lazy">
+      <svg class="schem" viewBox="0 0 360 240" aria-hidden="true"><text x="180" y="24" text-anchor="middle" class="s-cap a-step" style="--d:0.3s;--t:2.7s">Adolescents cooperate less than adults. Why?</text><text x="180" y="24" text-anchor="middle" class="s-cap a-step" style="--d:3.0s;--t:2.0s">Not because they misread others…</text><text x="180" y="24" text-anchor="middle" class="s-cap a-fade" style="--d:5.1s">…reciprocity is simply less rewarding</text>
+<g class="a-fade" style="--d:.6s"><rect x="104" y="40" width="9" height="9" rx="1.5" fill="#5aa9d6"/><text x="117" y="48.5" class="s-sm">Adults</text>
+<rect x="176" y="40" width="9" height="9" rx="1.5" fill="#e8736b"/><text x="189" y="48.5" class="s-sm">Adolescents</text></g>
+<g class="a-fade" style="--d:0.9s"><path class="s-axis" d="M36 178H104"/><text x="70" y="192" text-anchor="middle" class="s-sm">Cooperation</text><text x="70" y="203" text-anchor="middle" class="s-sm"></text></g><rect class="a-grow" style="--d:1.0s" x="46" y="106" width="22" height="72" rx="2" fill="#5aa9d6"/><rect class="a-grow" style="--d:1.25s" x="72" y="130" width="22" height="48" rx="2" fill="#e8736b"/>
+<g class="a-fade" style="--d:3.0s"><path class="s-axis" d="M146 178H214"/><text x="180" y="192" text-anchor="middle" class="s-sm">Expecting others</text><text x="180" y="203" text-anchor="middle" class="s-sm">to cooperate</text></g><rect class="a-grow" style="--d:3.2s" x="156" y="112" width="22" height="66" rx="2" fill="#5aa9d6"/><rect class="a-grow" style="--d:3.45s" x="182" y="114" width="22" height="64" rx="2" fill="#e8736b"/>
+<text x="180" y="104" text-anchor="middle" class="s-h a-pop" style="--d:3.9s;font-size:16px" fill="#2e7d32">≈</text>
+<g class="a-fade" style="--d:5.1s"><path class="s-axis" d="M256 178H324"/><text x="290" y="192" text-anchor="middle" class="s-sm">Reward from</text><text x="290" y="203" text-anchor="middle" class="s-sm">reciprocity</text></g><rect class="a-grow" style="--d:5.3s" x="266" y="104" width="22" height="74" rx="2" fill="#5aa9d6"/><rect class="a-grow" style="--d:5.55s" x="292" y="142" width="22" height="36" rx="2" fill="#e8736b"/>
+<text x="303" y="134" text-anchor="middle" class="s-h a-pop" style="--d:6.0s;font-size:15px" fill="#b3261e">↓</text>
+<text x="180" y="226" text-anchor="middle" class="s-sm a-fade" style="--d:6.4s">Self-interest wins out in the social dilemma</text></svg>
+      <button class="replay" type="button" tabindex="-1">❚❚ Pause</button>
+    </div>
+    <div>
+      <a class="t" href="https://doi.org/10.7554/eLife.106840.3" target="_blank" rel="noopener">The self-interest of adolescents overrules cooperation in social dilemmas</a>
+      <div class="au"><strong>Xiaoyan Wu</strong><sup>†</sup>, Hongyu Fu<sup>†</sup>, <a href="https://www.goekhan-aydogan.com/" target="_blank" rel="noopener">Gökhan Aydogan</a>, <a href="https://psy.scnu.edu.cn/a/20191009/89.html" target="_blank" rel="noopener">Chunliang Feng</a>, <a href="https://icanbrainlab.bnu.edu.cn/en/default.html" target="_blank" rel="noopener">Shaozheng Qin</a>, Yi Zeng, <a href="https://liuchaolab.bnu.edu.cn/mobile/en/?page_id=156" target="_blank" rel="noopener">Chao Liu</a></div>
+      <div class="ve"><em>eLife</em> (2026) <a class="tag" href="https://doi.org/10.7554/eLife.106840.3" target="_blank" rel="noopener">Paper</a><a class="tag" href="https://elifesciences.org/for-the-press/15b3433b/why-teens-are-more-self-serving-than-adults-in-social-situations" target="_blank" rel="noopener">Press release</a></div>
+      <p class="sum">Adolescents cooperate less than adults not because they understand others less well, but because reciprocity is less rewarding to them, reflecting a stronger self-interest motive.</p>
+    </div>
+  </article>
+
+  <article class="pub">
+    <div class="thumb anim" data-dur="8400" tabindex="0" aria-label="Animated summary of the paper. Click to replay.">
+      <img class="fig" src="images/web/xuebao.webp" alt="Computational model of conditional cooperation" loading="lazy">
+      <svg class="schem" viewBox="0 0 360 240" aria-hidden="true"><text x="180" y="24" text-anchor="middle" class="s-cap a-step" style="--d:0.3s;--t:3.3s">A social dilemma, round after round</text><text x="180" y="24" text-anchor="middle" class="s-cap a-step" style="--d:3.7s;--t:1.8s">Expecting cooperation, and enjoying it…</text><text x="180" y="24" text-anchor="middle" class="s-cap a-fade" style="--d:5.6s">…together sustain mutual cooperation</text>
+<g class="a-fade" style="--d:.4s"><circle cx="46" cy="77" r="8" fill="#888"/><path d="M34 104q0-17 12-17t12 17z" fill="#4c78a8"/><circle cx="314" cy="77" r="8" fill="#888"/><path d="M302 104q0-17 12-17t12 17z" fill="#f2a65a"/>
+<text x="46" y="118" text-anchor="middle" class="s-sm">You</text><text x="314" y="118" text-anchor="middle" class="s-sm">Partner</text>
+<text x="180" y="62" text-anchor="middle" class="s-sm">partner cooperates</text></g>
+<g class="a-pop" style="--d:1.0s"><circle cx="140" cy="84" r="10" fill="#e8f5e9" stroke="#4caf50" stroke-width="1.5"/><path d="M135.5 84l3 3.5 6-7" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g><g class="a-pop" style="--d:1.7s"><circle cx="180" cy="84" r="10" fill="#e8f5e9" stroke="#4caf50" stroke-width="1.5"/><path d="M175.5 84l3 3.5 6-7" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g><g class="a-pop" style="--d:2.4s"><circle cx="220" cy="84" r="10" fill="#e8f5e9" stroke="#4caf50" stroke-width="1.5"/><path d="M215.5 84l3 3.5 6-7" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="a-fade" style="--d:.9s"><text x="180" y="137" text-anchor="middle" class="s-sm">your expectation that they will cooperate</text>
+<path d="M90 148H270" stroke="#e6e6e6" stroke-width="10" stroke-linecap="round"/></g>
+<path class="a-draw" pathLength="1" style="--d:1.0s;--t:2.1s" d="M90 148H244" stroke="#4c78a8" stroke-width="10" stroke-linecap="round" fill="none"/>
+<g class="a-pop" style="--d:3.9s"><rect x="92" y="162" width="176" height="22" rx="11" fill="#fdecef" stroke="#e79aa8"/>
+<text x="180" y="177" text-anchor="middle" class="s-sm" style="fill:#a23b52;font-weight:700">+ reward of mutual cooperation</text></g>
+<g class="a-pop" style="--d:5.6s"><rect x="118" y="194" width="124" height="27" rx="13.5" fill="#e8f5e9" stroke="#4caf50"/>
+<text x="180" y="212" text-anchor="middle" class="s-h" fill="#2e7d32">You cooperate</text></g></svg>
+      <button class="replay" type="button" tabindex="-1">❚❚ Pause</button>
+    </div>
+    <div>
+      <a class="t" href="https://journal.psych.ac.cn/acps/EN/10.3724/SP.J.1041.2024.01299" target="_blank" rel="noopener">A cognitive computational mechanism for mutual cooperation: The roles of positive expectation and social reward</a>
+      <div class="au"><strong>Xiaoyan Wu</strong>, Hongyu Fu, Tengfei Zhang, <a href="https://sherrybao222.github.io/" target="_blank" rel="noopener">Dongqi Bao</a>, <a href="https://faculty.ecnu.edu.cn/_s9/hj2/main.psp" target="_blank" rel="noopener">Jie Hu</a>, <a href="https://psy.sysu.edu.cn/teacher/1138" target="_blank" rel="noopener">Ruida Zhu</a>, <a href="https://psy.scnu.edu.cn/a/20191009/89.html" target="_blank" rel="noopener">Chunliang Feng</a>, <a href="http://english.psych.cas.cn/sourcedb/epsychexpert/202310/t20231030_422186.html" target="_blank" rel="noopener">Ruolei Gu</a>, <a href="https://liuchaolab.bnu.edu.cn/mobile/en/?page_id=156" target="_blank" rel="noopener">Chao Liu</a></div>
+      <div class="ve"><em>Acta Psychologica Sinica</em> (2024) <a class="tag" href="https://journal.psych.ac.cn/acps/EN/10.3724/SP.J.1041.2024.01299" target="_blank" rel="noopener">Paper</a></div>
+      <p class="sum">In the Prisoner's Dilemma, cooperation is best explained by a model that combines the intrinsic reward of reciprocity with learning about what others expect.</p>
+    </div>
+  </article>
+
+  <article class="pub">
+    <div class="thumb anim" data-dur="8000" tabindex="0" aria-label="Animated summary of the paper. Click to replay.">
+      <img class="fig" src="images/web/AcuteStress.webp" alt="Acute stress and third-party intervention" loading="lazy">
+      <svg class="schem" viewBox="0 0 360 240" aria-hidden="true"><text x="180" y="24" text-anchor="middle" class="s-cap a-step" style="--d:0.3s;--t:3.0s">Calm: more punishment of the violator</text><text x="180" y="24" text-anchor="middle" class="s-cap a-fade" style="--d:3.6s">Acute stress: the balance shifts to helping</text>
+<g class="a-fade" style="--d:.3s"><circle cx="180" cy="65" r="8" fill="#555"/><path d="M168 92q0-17 12-17t12 17z" fill="#9aa3ad"/>
+<text x="180" y="106" text-anchor="middle" class="s-sm">You, a third party</text>
+<circle cx="48" cy="133" r="8" fill="#888"/><path d="M36 160q0-17 12-17t12 17z" fill="#f2b632"/><text x="48" y="176" text-anchor="middle" class="s-h" fill="#b3261e">Punish</text><text x="48" y="188" text-anchor="middle" class="s-sm">the violator</text>
+<circle cx="312" cy="133" r="8" fill="#888"/><path d="M300 160q0-17 12-17t12 17z" fill="#3fa9e0"/><text x="312" y="176" text-anchor="middle" class="s-h" fill="#2e7d32">Help</text><text x="312" y="188" text-anchor="middle" class="s-sm">the victim</text>
+<path d="M118 206A62 62 0 0 1 180 144" stroke="#eda9a4" stroke-width="10" fill="none" stroke-linecap="round"/>
+<path d="M180 144A62 62 0 0 1 242 206" stroke="#a5d6a7" stroke-width="10" fill="none" stroke-linecap="round"/></g>
+<g class="a-rot" style="--d:1.0s;--r:-48deg;--o:180px 206px"><g class="a-rot" style="--d:3.9s;--r:96deg;--o:180px 206px">
+<path class="a-fade" style="--d:.5s" d="M180 206V158" stroke="#333" stroke-width="3.5" stroke-linecap="round"/></g></g>
+<circle class="a-fade" style="--d:.5s" cx="180" cy="206" r="6" fill="#333"/>
+<circle class="a-pop" style="--d:3.4s" cx="180" cy="65" r="14" fill="none" stroke="#d9534f" stroke-width="2"/>
+<circle class="a-pop" style="--d:3.6s" cx="180" cy="65" r="21" fill="none" stroke="#d9534f" stroke-width="1.5" stroke-opacity=".6"/>
+<text x="210" y="62" class="s-h a-fade" style="--d:3.4s" fill="#b3261e">acute stress</text></svg>
+      <button class="replay" type="button" tabindex="-1">❚❚ Pause</button>
+    </div>
+    <div>
+      <a class="t" href="https://doi.org/10.1371/journal.pbio.3002195" target="_blank" rel="noopener">Acute stress during witnessing injustice shifts third-party interventions from punishing the perpetrator to helping the victim</a>
+      <div class="au">Huagen Wang, <strong>Xiaoyan Wu</strong>, Jiahua Xu, <a href="https://psy.sysu.edu.cn/teacher/1138" target="_blank" rel="noopener">Ruida Zhu</a>, Sihui Zhang, Zhenhua Xu, Xiaoqin Mai, <a href="https://icanbrainlab.bnu.edu.cn/en/default.html" target="_blank" rel="noopener">Shaozheng Qin</a>, <a href="https://liuchaolab.bnu.edu.cn/mobile/en/?page_id=156" target="_blank" rel="noopener">Chao Liu</a></div>
+      <div class="ve"><em>PLOS Biology</em> (2024) <a class="tag" href="https://doi.org/10.1371/journal.pbio.3002195" target="_blank" rel="noopener">Paper</a><a class="tag" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3002618" target="_blank" rel="noopener">Primer</a></div>
+      <p class="sum">Acute stress shifts third parties from punishing offenders to helping victims, driven by changes in connectivity between the amygdala and the dorsolateral and ventromedial prefrontal cortex.</p>
+    </div>
+  </article>
+
+  <article class="pub">
+    <div class="thumb anim" data-dur="8600" tabindex="0" aria-label="Animated summary of the paper. Click to replay.">
+      <img class="fig" src="images/web/PNAS.webp" alt="Heroic behavior studied in immersive virtual reality" loading="lazy">
+      <svg class="schem" viewBox="0 0 360 240" aria-hidden="true"><text x="180" y="24" text-anchor="middle" class="s-cap a-step" style="--d:0.3s;--t:2.3s">In virtual reality, a thief runs past you</text><text x="180" y="24" text-anchor="middle" class="s-cap a-step" style="--d:2.8s;--t:2.5s">Would you step in? VR makes it safe to test</text><text x="180" y="24" text-anchor="middle" class="s-cap a-fade" style="--d:5.5s">Who steps in depends on</text>
+<g transform="translate(0,-22)">
+<path class="a-fade" style="--d:.3s" d="M16 178H344" stroke="#ccc" stroke-width="2"/>
+<g class="a-fade" style="--d:.4s"><circle cx="52" cy="151" r="8" fill="#888"/><path d="M40 178q0-17 12-17t12 17z" fill="#66bb6a"/></g>
+<g class="a-pop" style="--d:1.0s"><path d="M30 104h58a8 8 0 0 1 8 8v8a8 8 0 0 1-8 8H62l-6 8-1-8H30a8 8 0 0 1-8-8v-8a8 8 0 0 1 8-8z" fill="#fff" stroke="#66bb6a" stroke-width="1.5"/>
+<text x="59" y="120.5" text-anchor="middle" class="s-h" fill="#2e7d32">Thief!</text></g>
+<g class="a-move" style="--d:3.6s;--tx:92px;--ty:0px"><g class="a-fade" style="--d:.4s"><circle cx="140" cy="151" r="8" fill="#777"/><path d="M128 178q0-17 12-17t12 17z" fill="#4c78a8"/>
+<rect x="130.5" y="147" width="19" height="7" rx="2" fill="#222"/><text x="140" y="193" text-anchor="middle" class="s-sm">You, in VR</text></g></g>
+<text x="140" y="134" text-anchor="middle" class="s-h a-step" style="--d:2.8s;--t:1.0s;font-size:15px" fill="#1f5fa8">?</text>
+<g class="a-move" style="--d:1.4s;--tx:100px;--ty:0px"><g class="a-fade" style="--d:.4s"><circle cx="210" cy="151" r="8" fill="#888"/><path d="M198 178q0-17 12-17t12 17z" fill="#f2a65a"/>
+<path d="M196 160h-10M196 166h-14M196 172h-9" stroke="#f2a65a" stroke-width="1.6" stroke-linecap="round"/>
+<text x="210" y="193" text-anchor="middle" class="s-sm">Thief</text></g></g>
+</g>
+<g class="a-pop" style="--d:5.7s"><rect x="26.0" y="190" width="96" height="21" rx="10.5" fill="#eef4fb" stroke="#9fc0e6"/><text x="74" y="204.5" text-anchor="middle" class="s-sm" style="fill:#1f5fa8;font-weight:700">the situation</text></g><g class="a-pop" style="--d:5.9s"><rect x="142.0" y="190" width="76" height="21" rx="10.5" fill="#eef4fb" stroke="#9fc0e6"/><text x="180" y="204.5" text-anchor="middle" class="s-sm" style="fill:#1f5fa8;font-weight:700">empathy</text></g><g class="a-pop" style="--d:6.1s"><rect x="241.0" y="190" width="70" height="21" rx="10.5" fill="#eef4fb" stroke="#9fc0e6"/><text x="276" y="204.5" text-anchor="middle" class="s-sm" style="fill:#1f5fa8;font-weight:700">gender</text></g></svg>
+      <button class="replay" type="button" tabindex="-1">❚❚ Pause</button>
+    </div>
+    <div>
+      <a class="t" href="https://doi.org/10.1073/pnas.2314590121" target="_blank" rel="noopener">Observing heroic behavior and its influencing factors in immersive virtual environments</a>
+      <div class="au">Kelou Jin, Jie Wu, Ran Zhang, Shen Zhang, <strong>Xiaoyan Wu</strong>, Tingting Wu, <a href="http://english.psych.cas.cn/sourcedb/epsychexpert/202310/t20231030_422186.html" target="_blank" rel="noopener">Ruolei Gu</a>, <a href="https://liuchaolab.bnu.edu.cn/mobile/en/?page_id=156" target="_blank" rel="noopener">Chao Liu</a></div>
+      <div class="ve"><em>Proceedings of the National Academy of Sciences</em> (2024) <a class="tag" href="https://doi.org/10.1073/pnas.2314590121" target="_blank" rel="noopener">Paper</a></div>
+      <p class="sum">Virtual reality makes it possible to study heroism safely. In simulated crime scenes, both the situation and personal attributes such as gender and empathy shape whether people step in.</p>
+    </div>
+  </article>
+
+  <article class="pub">
+    <div class="thumb anim" data-dur="8400" tabindex="0" aria-label="Animated summary of the paper. Click to replay.">
+      <img class="fig" src="images/web/GuiltAversion.webp" alt="Social incentives, guilt aversion and psychopathic traits" loading="lazy">
+      <svg class="schem" viewBox="0 0 360 240" aria-hidden="true"><text x="180" y="24" text-anchor="middle" class="s-cap a-step" style="--d:0.3s;--t:2.5s">A public goods game: how much will you give?</text><text x="180" y="24" text-anchor="middle" class="s-cap a-step" style="--d:2.9s;--t:2.4s">“We are counting on you”</text><text x="180" y="24" text-anchor="middle" class="s-cap a-fade" style="--d:5.4s">Social incentives work through guilt</text>
+<g class="a-fade" style="--d:.6s"><text x="150" y="52" text-anchor="middle" class="s-sm">anticipated guilt</text><text x="278" y="52" text-anchor="middle" class="s-sm">contribution</text>
+<text x="14" y="70" class="s-sm" style="font-weight:700;fill:#444">Lower psychopathic traits</text><circle cx="36" cy="91" r="8" fill="#888"/><path d="M24 118q0-17 12-17t12 17z" fill="#7fa8c9"/>
+<path d="M100 104H200" stroke="#e6e6e6" stroke-width="10" stroke-linecap="round"/>
+<text x="14" y="142" class="s-sm" style="font-weight:700;fill:#444">Higher psychopathic traits</text><circle cx="36" cy="163" r="8" fill="#888"/><path d="M24 190q0-17 12-17t12 17z" fill="#9aa3ad"/>
+<path d="M100 176H200" stroke="#e6e6e6" stroke-width="10" stroke-linecap="round"/></g>
+<path class="a-draw" pathLength="1" style="--d:3.2s;--t:1s" d="M100 104H192" stroke="#d98a2b" stroke-width="10" stroke-linecap="round" fill="none"/>
+<path class="a-draw" pathLength="1" style="--d:3.2s;--t:1s" d="M100 176H128" stroke="#d98a2b" stroke-width="10" stroke-linecap="round" fill="none"/>
+<circle class="a-pop" style="--d:4.30s" cx="236" cy="104" r="7" fill="#f2c94c" stroke="#d4a72c" stroke-width="1.2"/><circle class="a-pop" style="--d:4.43s" cx="253" cy="104" r="7" fill="#f2c94c" stroke="#d4a72c" stroke-width="1.2"/><circle class="a-pop" style="--d:4.56s" cx="270" cy="104" r="7" fill="#f2c94c" stroke="#d4a72c" stroke-width="1.2"/><circle class="a-pop" style="--d:4.69s" cx="287" cy="104" r="7" fill="#f2c94c" stroke="#d4a72c" stroke-width="1.2"/><circle class="a-pop" style="--d:4.82s" cx="304" cy="104" r="7" fill="#f2c94c" stroke="#d4a72c" stroke-width="1.2"/><circle class="a-pop" style="--d:4.30s" cx="236" cy="176" r="7" fill="#f2c94c" stroke="#d4a72c" stroke-width="1.2"/><circle class="a-pop" style="--d:4.43s" cx="253" cy="176" r="7" fill="#f2c94c" stroke="#d4a72c" stroke-width="1.2"/>
+<text x="180" y="226" text-anchor="middle" class="s-sm a-fade" style="--d:6.0s">Less guilt with psychopathic traits, so the social nudge fades</text></svg>
+      <button class="replay" type="button" tabindex="-1">❚❚ Pause</button>
+    </div>
+    <div>
+      <a class="t" href="https://doi.org/10.1002/pchj.641" target="_blank" rel="noopener">Social incentives foster cooperation through guilt aversion: An effect that diminishes with primary psychopathic traits</a>
+      <div class="au"><strong>Xiaoyan Wu</strong>, <a href="https://psy.sysu.edu.cn/teacher/1138" target="_blank" rel="noopener">Ruida Zhu</a>, Xu Gong, Yuejia Luo, <a href="https://liuchaolab.bnu.edu.cn/mobile/en/?page_id=156" target="_blank" rel="noopener">Chao Liu</a></div>
+      <div class="ve"><em>PsyCh Journal</em> (2023) <a class="tag" href="https://doi.org/10.1002/pchj.641" target="_blank" rel="noopener">Paper</a></div>
+      <p class="sum">Monetary and social incentives both increase cooperation, but people with stronger primary psychopathic traits respond less to social incentives because they discount what others expect of them.</p>
+    </div>
+  </article>
+</section>
+
+<section id="service">
+  <h2>Professional Service</h2>
+  <ul class="rows">
+    <li><span class="y">2026-2029</span><span>Member, Education Committee <span class="w">· Schizophrenia International Research Society</span></span></li>
+    <li><span class="y">2026-2029</span><span>Member, Global Representation Committee <span class="w">· Schizophrenia International Research Society</span></span></li>
+    <li><span class="y">Reviewer</span><span><em>eLife</em>, <em>Schizophrenia Bulletin</em>, <em>Psychological Science</em>, <em>Evolutionary Psychological Science</em>, <em>Advances in Psychological Science</em>, <em>Collabra: Psychology</em>, <em>Frontiers in Psychology</em>, <em>Frontiers in Behavioral Economics</em> and <em>Frontiers in Genetics</em></span></li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Last updated November 2026. Website design adapted from <a href="https://jonbarron.info/" target="_blank" rel="noopener">Jon Barron</a> and <a href="https://fanshi14.github.io/me/" target="_blank" rel="noopener">Fan Shi</a>. This site uses Statcounter and GoatCounter for visit statistics.
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Each schematic plays, rests on the paper figure, then plays again while it is on screen.
+  // A click pauses it on the paper figure; another click resumes.
+  // email: the address is put together only on click, so it is not in the page for scrapers
+  [].slice.call(document.querySelectorAll('a.mail')).forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      window.location.href = 'mai' + 'lto:' + a.dataset.u + String.fromCharCode(64) + a.dataset.d;
+    });
+  });
+  var HOLD = 6000;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var thumbs = [].slice.call(document.querySelectorAll('.thumb.anim'));
+  function label(t){
+    var b = t.querySelector('.replay');
+    if (b) b.textContent = t._stopped ? '\u25B6 Play' : '\u275A\u275A Pause';
+    t.setAttribute('aria-label', 'Animated summary of the paper. Click to ' + (t._stopped ? 'play.' : 'pause.'));
+  }
+  function cycle(t){
+    t.classList.remove('run');
+    void t.offsetWidth;                       // restart the CSS animations
+    t.classList.add('run');
+    t._timer = setTimeout(function(){
+      t.classList.remove('run');              // rest on the paper figure
+      t._timer = setTimeout(function(){ if (t._on) cycle(t); }, HOLD);
+    }, +t.dataset.dur || 8000);
+  }
+  function start(t){ if (t._stopped || t._on || !t._visible) return; t._on = true; cycle(t); }
+  function halt(t){ t._on = false; clearTimeout(t._timer); t.classList.remove('run'); }
+  function toggle(t){
+    t._stopped = !t._stopped;
+    t.classList.toggle('stopped', t._stopped);
+    if (t._stopped) halt(t); else start(t);
+    label(t);
+  }
+  thumbs.forEach(function(t){
+    t._stopped = reduce; t._visible = !('IntersectionObserver' in window);
+    t.classList.toggle('stopped', t._stopped);
+    label(t);
+    t.addEventListener('click', function(){ toggle(t); });
+    t.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(t); } });
+  });
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var t = en.target; t._visible = en.isIntersecting;
+        if (en.isIntersecting) start(t); else halt(t);
+      });
+    }, {threshold:0.5});
+    thumbs.forEach(function(t){ io.observe(t); });
+  } else {
+    thumbs.forEach(start);
+  }
+})();
+</script>
+<script data-goatcounter="https://xiaoywu.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<!-- Default Statcounter code for my webside http://xiaoyanwu2024.github.io -->
+<script type="text/javascript">
+var sc_project=13366168; 
+var sc_invisible=1; 
+var sc_security="d5db44b7"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="web stats"
+href="https://statcounter.com/" target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/13366168/0/d5db44b7/1/" alt="web stats"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+</body>
+</html>
